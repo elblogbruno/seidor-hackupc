@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from app.models.item import Base, Item
+from models.item import Base, Item
 
 class DatabaseService:
     def __init__(self, db_url):
