@@ -1,9 +1,9 @@
 fastapi==0.68.1
 uvicorn==0.15.0
-sqlalchemy==1.4.25
-langchain==0.1.0
-pytest==6.2.5
+sqlalchemy
+pytest
 langchain
 langchain-community
 langchain-openai
-faker
+langchain-groq
+Faker
