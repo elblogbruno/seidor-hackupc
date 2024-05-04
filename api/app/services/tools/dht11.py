@@ -12,9 +12,7 @@ import adafruit_dht
 sensor = adafruit_dht.DHT11(board.D23)
 
 
-
-@tool
-def get_dht11_data() -> str:
+def get_Dht11(query: str):
     try:
         temperature_c = sensor.temperature
         temperature_f = temperature_c * (9 / 5) + 32
@@ -31,3 +29,6 @@ def get_dht11_data() -> str:
     except Exception as error:
         sensor.exit()
         raise error
+
+
+
