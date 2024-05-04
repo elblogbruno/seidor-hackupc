@@ -22,18 +22,13 @@ class _CreateOptionState extends State<CreateOption> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Actualización de Texto'),
+        title: const Text('List of products'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            const Text(
-              'Título de la Pantalla',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -55,7 +50,7 @@ class _CreateOptionState extends State<CreateOption> {
                     ),
                   ),
                   Flexible(
-                    child: UpdateTextButton(onPressed: () => updateText("Texto actualizado: ${DateTime.now()}")),
+                    child: UpdateTextButton(onPressed: () => updateText("Texto actualizado: ${DateTime.now()}" * 50)),
                   ),
                 ],
               ),
@@ -76,7 +71,7 @@ class UpdateTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      child: const Text('Actualizar Texto'),
+      child: const Text('Order'),
     );
   }
 }
