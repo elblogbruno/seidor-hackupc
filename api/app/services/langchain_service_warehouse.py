@@ -38,18 +38,30 @@ os.environ["GOOGLE_API_KEY"] = google_api_key
 os.environ["OPENAI_API_KEY"] = "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" # Get it at https://platform.openai.com/account/api-keys
 
 
-class Product(BaseModel):
+class OrderListProduct(BaseModel):
+    id: Optional[Union[str, int]] = Field(description="The product ID")
+    name: str = Field(description="The product name")
+    ean: Optional[Union[str, int]] = Field(description="The product EAN")
+    quantity: Optional[int] = Field(description="The quantity user wants to order")
+
+class PickingProduct(BaseModel):
     id: Optional[Union[str, int]] = Field(description="The product ID")
     name: str = Field(description="The product name")
     ean: Optional[Union[str, int]] = Field(description="The product EAN")
     quantity: Optional[int] = Field(description="The quantity available in the warehouse")
-
+    location: str = Field(description="The location in the warehouse")
 
 class Order(BaseModel):
     """Extracted data about people."""
 
     # Creates a model so that we can extract multiple entities.
-    products: List[Product]
+    products: List[OrderListProduct] = Field(description="The list of products in the order")
+
+class ListProducts(BaseModel):
+    """Extracted data about people."""
+
+    # Creates a model so that we can extract multiple entities.
+    products: List[PickingProduct] = Field(description="The list of products in the order")
 
 
 # TODO:  SEE IF WE CAN SPEAK IN OTHER LANGUAGES
@@ -57,17 +69,30 @@ class Order(BaseModel):
 SQL_PREFIX = """
 First conversation with the user always ask for the language to be used during the conversation. If user does not specify, use English. 
 if user specifies a language, use that language for the rest of the conversation.
-You are an agent designed to interact with a .csv file to help an user order products from a warehouse.
-{input} will be a product name that he wants to order from the .csv file. 
-The agent should get the product ID, name, ean from .csv and add it to {order_list}.
-If product is not found, search the product name that highly matches the user input in the .csv file. If found, add the product to  {order_list}.
+
+You are an agent designed to interact with a .csv file to help a warehouse worker locate products that the client ordered.
+{input} will be a product name from the {order_list} that he needs to localize on the warehouse and it is contained in a .csv file.
+{order_list} will be a list of products that the user wants to order.
+You need to look every minute for new order_list using get_new_order_list tool
+
+Agent should look for the product in the .csv file and return the location of the product in the warehouse and add it to the picking list.
+It might happen that the product is not found in the .csv file, in that case, the agent should let the user know that the product is not found.
+Also, the product the user is looking for might not be in the warehouse, in that case, the agent should let the user know that the product is not in the warehouse.
+Also, the product might be in the warehouse but not in the location specified in the .csv file, in that case, the agent should let the user know that the product is not in the location specified.
+And, it might happen user requested more quantity than available in the warehouse, in that case, the agent should let the user know that the quantity is not available.
+
+
+The picking list should include the product names, quantities and locations of the products in the warehouse
+During picking process, some issues could appear (wrong location, no stock on location, wrong product code, etc) 
+the system should have conversational capabilities to report and/or solve those issues.
+
+If product is not found, search the product name that highly matches the user input in the .csv file. If found, add the product to {pick_list}
 If multiple products are found, let the user choose one by letting him select the correct product Name.
 If product is not found, let the user know that the product is not found.
-Only add one product to the order list at a time.
-If quantity is not specified, ask the user for the quantity. If quantity is specified, add the product to the order list with the specified quantity.
-User can also ask to remove a product from the order list or reduce the quantity of a product in the order list. 
-User can also ask to save the order list to a file, that is confirm the order and send to the warehouse.
-Always show the current order list to the user.
+
+Only add one product to the pick list at a time, as the user will have to pick one product at a time.
+
+Always show the current pick list to the user.
 
 If you are unsure of the next step, show your output and ask user for input.
 Do not role play in the conversation. For example, generating AI and Human conversation is not allowed.
@@ -80,21 +105,22 @@ Do not role play in the conversation. For example, generating AI and Human conve
 SQL_SUFFIX = """Begin!
 history: {chat_history}
 order_list: {order_list}
+pick_list: {pick_list}
 Question: {input}
 Thought: You should always think about what to do
 {agent_scratchpad}"""
 
 order_list = []
-
+pick_list = []
 
 import json
 
 
 @tool()
-def add_product_to_order_list(name: str, quantity: int = 1) -> str:
+def add_product_to_picking_list(name: str, quantity: int = 1) -> str:
     """Add a product to the order list."""
     # Add a product to the order list
-    products = search_products(name)
+    products = search_picking_products(name)
 
     if len(products) == 0:
         return "Product not found"
@@ -119,13 +145,13 @@ def add_product_to_order_list(name: str, quantity: int = 1) -> str:
 
 
 @tool()
-def product_list(query: str = "") -> str:
+def warehouse_products_list(query: str = "") -> str:
     """Get the list of products."""
     # TODO: Get from INTERNET (MY VPS OR SOMETHING, AND WE CAN ALWAYS GRAB LATEST DATA) 
     # IN CASE OF WAREHOUSE WE WILL HAVE SOME CSV LIKE THIS BUT WITH MORE DATA (LOCATION + TEMPERATURE ETC.)
     # path = "/home/brunomoya/development/hackupc/seidor-hackupc/api/app/services/products.csv"
     print("Getting the list of products from main server")
-    path = "http://95.111.245.169:8000/client/"
+    path = "http://95.111.245.169:8000/warehouse/"
 
     df = pd.read_csv(path, delimiter=";")
 
@@ -143,7 +169,7 @@ def product_list(query: str = "") -> str:
             if 'quantity' not in item:
                 item['quantity'] = 0
                 
-            product_descriptions.append(f"ID: {item['id']}, Name: {item['name']}, EAN: {item['ean']} Quantity: {item['quantity']}")
+            product_descriptions.append(f"ID: {item['id']}, Name: {item['name']}, EAN: {item['ean']} Quantity: {item['quantity']} Location: {item['location']}")
     except ValueError as e:
         return f"Error parsing JSON: {e}\nResponse text: {response.text}"
 
@@ -151,15 +177,23 @@ def product_list(query: str = "") -> str:
 
     return result_string
 
-@tool("my_order", return_direct=True)
-def my_order(query: str = "") -> str:
+@tool("get_new_order_list", return_direct=True)
+def get_new_order_list(query: str = "") -> str:
     """Get the current order list."""
     
+    # order_list read latest file inside orders
+
+    import glob
+    import os
+
+    list_of_files = glob.glob('/orders/*') # * means all if need specific format then *.csv
+    latest_file = max(list_of_files, key=os.path.getctime)
+
     # return the current order list as a string
     order_descriptions = []
 
     try:
-        for item in order_list:
+        for item in latest_file:
             order_descriptions.append(f"ID: {item['id']}, Name: {item['name']}, EAN: {item['ean']} Quantity: {item['quantity']}")
     except ValueError as e:
         return f"Error parsing JSON: {e}"
@@ -169,63 +203,60 @@ def my_order(query: str = "") -> str:
     return result_string
 
 @tool()
-def search_products(product_name: str) -> List[Product]:
-    """Search for a product in the product list."""
-    path = "http://95.111.245.169:8000/client/"
+def search_picking_products(product_name: str) -> List[PickingProduct]:
+    """Search for a product in the picking list."""
+    path = "http://95.111.245.169:8000/warehouse/"
     df = pd.read_csv(path, delimiter=";")
     products = df[df["name"].str.contains(product_name, case=False, na=False)].to_dict(orient="records")
     
     return products
 
 @tool()
-def search_products_by_id(id: str) -> List[Product]:
+def search_products_by_id(id: str) -> List[PickingProduct]:
     """Search for a product in the product list."""
-    path = "http://95.111.245.169:8000/client/"
+    path = "http://95.111.245.169:8000/warehouse/"
     df = pd.read_csv(path, delimiter=";")
     products = df[df["id"] == id].to_dict(orient="records")
     
     return products
 
-@tool("similarity", args_schema=Product, return_direct=True)
-def similarity(user_input_name: str, product_name: str) -> float:
-    """Check the similarity between two strings."""
-    # Check the similarity between two strings
-    return fuzz.token_sort_ratio(user_input_name, product_name)
-
 @tool()
-def remove_product_from_order_list(id: str) -> List[Product]:
+def remove_product_from_picking_list(id: str) -> List[PickingProduct]:
     """Remove a product from the order list."""
-    global order_list
+    global pick_list
     # Remove a product from the order list
-    order_list_filtered = [item for item in order_list if item["id"] != id]
-    return order_list_filtered
+    picking_list_filtered = [item for item in pick_list if item["id"] != id]
+    return picking_list_filtered
 
 @tool()
-def confirm_order(order_list: List[Product]) -> str:
+def confirm_picking(pick_list: List[PickingProduct]) -> str:
     # SAVE TO INTERNET VPS SO THE WAREHOUSE WORKER HAS ACCESS TO IT AND ITS AI LEARS FROM IT.
     """Confirm the order."""
-    print("Saving order list to a file")
+
+    return "Picking Finished"
+
+    # print("Saving order list to a file")
     
-    import requests
+    # import requests
 
 
-    print(order_list)
+    # print(order_list)
 
-    # do a POST request to the server with the order list
-    path = "http://95.111.245.169:8000/save_order/"
+    # # do a POST request to the server with the order list
+    # path = "http://95.111.245.169:8000/save_order/"
 
-    try:
-        order = Order(products=order_list)
+    # try:
+    #     order = Order(products=order_list)
 
-        # do a post request to the server with the order list
-        response = requests.post(path, json=order.dict())
+    #     # do a post request to the server with the order list
+    #     response = requests.post(path, json=order.dict())
 
-        if response.status_code == 200:
-            return "Order confirmed"
-    except Exception as e:
-        return f"Error saving order: {e}"
+    #     if response.status_code == 200:
+    #         return "Order confirmed"
+    # except Exception as e:
+    #     return f"Error saving order: {e}"
     
-    return "Error saving order: " + response.text
+    # return "Error saving order: " + response.text
 
 
 
@@ -269,13 +300,13 @@ class LangChainServiceWarehouse:
         self.config = config
 
 
-        tools.append(add_product_to_order_list)
-        tools.append(product_list)
+        tools.append(add_product_to_picking_list)
+        tools.append(warehouse_products_list)
         tools.append(my_order)
         # tools.append(search_product)
-        tools.append(search_products)
-        tools.append(remove_product_from_order_list)
-        tools.append(confirm_order)
+        tools.append(search_picking_products)
+        tools.append(remove_product_from_picking_list)
+        tools.append(confirm_picking)
 
 
         # tools.append(temp)
@@ -326,7 +357,7 @@ class LangChainServiceWarehouse:
             # final_answer = agent.invoke(query, config=config)
 
             final_answer = agent_executor.invoke({ 
-                "input": query, "order_list": order_list, "chat_history": sql_chat_history.messages}, config=config)
+                "input": query, "order_list": order_list, "pick_list": pick_list,  "chat_history": sql_chat_history.messages}, config=config)
         
             print(final_answer['output'])
 
@@ -356,4 +387,4 @@ class LangChainServiceWarehouse:
         return final_answer['output']
     
 if __name__ == "__main__":
-    service = LangChainService()
+    service = LangChainServiceWarehouse()
