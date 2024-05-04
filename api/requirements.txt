@@ -8,3 +8,6 @@ langchain-openai
 langchain-groq
 Faker
 psycopg2
+pandas
+fuzzywuzzy
+google-api-python-client>=2.100.0
