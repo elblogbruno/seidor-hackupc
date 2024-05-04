@@ -90,7 +90,7 @@ order_list = []
 import json
 
 
-@tool()
+@tool("add_product_to_order_list")
 def add_product_to_order_list(name: str, quantity: int = 1) -> str:
     """Add a product to the order list."""
     # Add a product to the order list
@@ -151,8 +151,8 @@ def product_list(query: str = "") -> str:
 
     return result_string
 
-@tool("my_order", return_direct=True)
-def my_order(query: str = "") -> str:
+@tool("show_order_list")
+def my_order() -> str:
     """Get the current order list."""
     
     # return the current order list as a string
@@ -211,8 +211,8 @@ def confirm_order(order_list: List[Product]) -> str:
 
     print(order_list)
 
-    # do a POST request to the server with the order list
-    path = "http://95.111.245.169:8000/save_order/"
+    # do a POST request to the server (PI IOT DEVICE) with the order list
+    path = "http://192.168.124.15:8000/save_order/"
 
     try:
         order = Order(products=order_list)
@@ -243,13 +243,13 @@ def get_input() -> str:
     return "\n".join(contents)
 
 class LangChainService:
-    def __init__(self):
+    def __init__(self, on_human_input=None, cli_mode=False):
 
-        # llm = ChatOpenAI(temperature=0, model_name="gpt-4", max_tokens=1000)
-        llm = Ollama(model="mistral")
+        llm = ChatOpenAI(temperature=0)
+        # llm = Ollama(model="mistral")
         # llm = ChatGroq(temperature=0, groq_api_key="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", model_name="mixtral-8x7b-32768") #"llama3-8b-8192") #  "mixtral-8x7b-32768")
         
-        tools = load_tools(["google-search", "human"], llm=llm, input_func=get_input)
+        tools = load_tools(["google-search", "human"], llm=llm, input_func=on_human_input)
         
         session_id = "FIXED_ID" #uuid.uuid4().hex
 
@@ -291,18 +291,37 @@ class LangChainService:
         Final Answer: the final answer to the original input question
         """
         
+        FORMAT_INSTRUCTIONS = """To use a tool, please use the following format:
+        '''
+        Thought: Do I need to use a tool? Yes
+        Action: the action to take, should be one of [{tool_names}]
+        Action Input: the input to the action
+        Observation: the result of the action
+        '''
+
+        When you have gathered all the information regarding AI algorithm, just write it to the user in the form of a blog post.
+
+        '''
+        Thought: Do I need to use a tool? No
+        AI: the final answer to the original input question
+        '''
+        """
+
         agent_executor = initialize_agent(
-            agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
+            agent=AgentType.OPENAI_FUNCTIONS,
             tools=tools,
             llm=llm,
             verbose=True,
             max_iterations=1,
             early_stopping_method='generate',
-            format_instructions=format_instructions_template,
             memory=memory,
             input_variables=["input", "agent_scratchpad", "order_list", "chat_history"],
+            return_intermediate_steps=True,
             agent_kwargs={
                 "prefix": SQL_PREFIX,
+                # "format_instructions": format_instructions_template,
+                "format_instructions":format_instructions_template,
+
                 "suffix": SQL_SUFFIX,
             },
         )
@@ -317,43 +336,48 @@ class LangChainService:
 
 
         # print(result['output'])
+        if cli_mode:
+            while True:
+                query = input("Enter a query: ")
+                if query == "exit":
+                    break
+            
+                # final_answer = agent.invoke(query, config=config)
 
-        while True:
-            query = input("Enter a query: ")
-            if query == "exit":
-                break
-        
-            # final_answer = agent.invoke(query, config=config)
+                final_answer = agent_executor.invoke({ 
+                    "input": query, "order_list": order_list, "chat_history": sql_chat_history.messages}, config=config)
+            
+                print(final_answer['output'])
 
-            final_answer = agent_executor.invoke({ 
-                "input": query, "order_list": order_list, "chat_history": sql_chat_history.messages}, config=config)
-        
-            print(final_answer['output'])
+                memory.save_context(inputs={"input": query}, outputs={"output": final_answer['output'], "order_list": order_list}) #, "chat_history": sql_chat_history.messages})
 
-            memory.save_context(inputs={"input": query}, outputs={"output": final_answer['output']})
+                sql_chat_history.add_user_message(query)
+                sql_chat_history.add_ai_message(final_answer['output'])
 
-            sql_chat_history.add_user_message(query)
-            sql_chat_history.add_ai_message(final_answer['output'])
-
-        # save order_list to a file
-        with open("order_list.txt", "w") as f:
-            for item in order_list:
-                f.write("%s\n" % item)
+            # save order_list to a file
+            with open("order_list.txt", "w") as f:
+                for item in order_list:
+                    f.write("%s\n" % item)
 
 
     def text_to_sql(self, text):
         # Use LangChain to convert text to SQL
         final_answer = self.table_chain.invoke({ 
-                "input": text, "order_list": order_list}, config=self.config)
+                "input": text, "order_list": order_list, "chat_history": self.sql_chat_history.messages}, config=self.config)
         
         print(final_answer['output'])
 
-        self.memory.save_context(inputs={"input": text}, outputs={"output": final_answer['output']})
+        self.memory.save_context(inputs={"input": text}, outputs={"output": final_answer['output'], "order_list": order_list})
 
         self.sql_chat_history.add_user_message(text)
         self.sql_chat_history.add_ai_message(final_answer['output'])
 
         return final_answer['output']
     
+    def initial_poke(self):
+        result = self.table_chain.invoke({"input": "Hello Fellow Human! What language should I speak during our conversation?", "order_list": order_list}, config=self.config)
+
+        return result['output']
+    
 if __name__ == "__main__":
-    service = LangChainService()
+    service = LangChainService(on_human_input=get_input, cli_mode=True)

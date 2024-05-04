@@ -141,7 +141,7 @@ def add_product_to_picking_list(name: str, quantity: int = 1) -> str:
 
     order_list.append(product)
 
-    return my_order()
+    return get_new_order_list()
 
 
 @tool()
@@ -274,13 +274,13 @@ def get_input() -> str:
     return "\n".join(contents)
 
 class LangChainServiceWarehouse:
-    def __init__(self):
+    def __init__(self, on_human_input=None, cli_mode=False):
 
-        # llm = ChatOpenAI(temperature=0, model_name="gpt-4", max_tokens=1000)
-        llm = Ollama(model="mistral")
+        llm = ChatOpenAI(temperature=0)
+        # llm = Ollama(model="mistral")
         # llm = ChatGroq(temperature=0, groq_api_key="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", model_name="mixtral-8x7b-32768") #"llama3-8b-8192") #  "mixtral-8x7b-32768")
         
-        tools = load_tools(["google-search", "human"], llm=llm, input_func=get_input)
+        tools = load_tools(["google-search", "human"], llm=llm, input_func=on_human_input)
         
         session_id = "FIXED_ID" #uuid.uuid4().hex
 
@@ -302,7 +302,7 @@ class LangChainServiceWarehouse:
 
         tools.append(add_product_to_picking_list)
         tools.append(warehouse_products_list)
-        tools.append(my_order)
+        tools.append(get_new_order_list)
         # tools.append(search_product)
         tools.append(search_picking_products)
         tools.append(remove_product_from_picking_list)
@@ -322,21 +322,41 @@ class LangChainServiceWarehouse:
         Final Answer: the final answer to the original input question
         """
         
+        # agent_executor = initialize_agent(
+        #     agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
+        #     tools=tools,
+        #     llm=llm,
+        #     verbose=True,
+        #     max_iterations=1,
+        #     early_stopping_method='generate',
+        #     format_instructions=format_instructions_template,
+        #     memory=memory,
+        #     input_variables=["input", "agent_scratchpad", "order_list", "chat_history"],
+        #     agent_kwargs={
+        #         "prefix": SQL_PREFIX,
+        #         "suffix": SQL_SUFFIX,
+        #     },
+        # )
+
         agent_executor = initialize_agent(
-            agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
+            agent=AgentType.OPENAI_FUNCTIONS,
             tools=tools,
             llm=llm,
             verbose=True,
             max_iterations=1,
             early_stopping_method='generate',
-            format_instructions=format_instructions_template,
             memory=memory,
             input_variables=["input", "agent_scratchpad", "order_list", "chat_history"],
+            return_intermediate_steps=True,
             agent_kwargs={
                 "prefix": SQL_PREFIX,
+                # "format_instructions": format_instructions_template,
+                "format_instructions":format_instructions_template,
+
                 "suffix": SQL_SUFFIX,
             },
         )
+
 
         # result = agent_executor.invoke("Add 4 units of 'CALIERCORTIN' to my list and then save it to a .txt file")
 
@@ -348,43 +368,48 @@ class LangChainServiceWarehouse:
 
 
         # print(result['output'])
+        if cli_mode:
+            while True:
+                query = input("Enter a query: ")
+                if query == "exit":
+                    break
+            
+                # final_answer = agent.invoke(query, config=config)
 
-        while True:
-            query = input("Enter a query: ")
-            if query == "exit":
-                break
-        
-            # final_answer = agent.invoke(query, config=config)
+                final_answer = agent_executor.invoke({ 
+                    "input": query, "order_list": order_list, "pick_list": pick_list,  "chat_history": sql_chat_history.messages}, config=config)
+            
+                print(final_answer['output'])
 
-            final_answer = agent_executor.invoke({ 
-                "input": query, "order_list": order_list, "pick_list": pick_list,  "chat_history": sql_chat_history.messages}, config=config)
-        
-            print(final_answer['output'])
+                memory.save_context(inputs={"input": query}, outputs={"output": final_answer['output'], "pick_list": pick_list})
 
-            memory.save_context(inputs={"input": query}, outputs={"output": final_answer['output']})
+                sql_chat_history.add_user_message(query)
+                sql_chat_history.add_ai_message(final_answer['output'])
 
-            sql_chat_history.add_user_message(query)
-            sql_chat_history.add_ai_message(final_answer['output'])
-
-        # save order_list to a file
-        with open("order_list.txt", "w") as f:
-            for item in order_list:
-                f.write("%s\n" % item)
+            # save order_list to a file
+            with open("order_list.txt", "w") as f:
+                for item in order_list:
+                    f.write("%s\n" % item)
 
 
     def text_to_sql(self, text):
         # Use LangChain to convert text to SQL
         final_answer = self.table_chain.invoke({ 
-                "input": text, "order_list": order_list}, config=self.config)
+                "input": text, "order_list": order_list, "pick_list": pick_list} ,config= self.config)
         
         print(final_answer['output'])
 
-        self.memory.save_context(inputs={"input": text}, outputs={"output": final_answer['output']})
+        self.memory.save_context(inputs={"input": text}, outputs={"output": final_answer['output'], "pick_list": pick_list})
 
         self.sql_chat_history.add_user_message(text)
         self.sql_chat_history.add_ai_message(final_answer['output'])
 
         return final_answer['output']
     
+    def initial_poke(self):
+        result = self.table_chain.invoke({"input": "human Say Hello Fellow AI! and ask What language should you speak during our conversation?", "pick_list": pick_list,  "order_list": order_list}, config=self.config)
+        
+        return result['output']
+    
 if __name__ == "__main__":
-    service = LangChainServiceWarehouse()
+    service = LangChainServiceWarehouse(on_human_input=get_input, cli_mode=True)
