@@ -1,3 +1,5 @@
+https://www.youtube.com/watch?v=WarlsPq6YTY
+
 Inspiration
 SeiVoice was born to transform purchasing and management in supermarkets through natural voice interaction, improving both the customer experience and operational efficiency.
 
