@@ -1,0 +1,269 @@
+-- Merging decision tree log ---
+application
+INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:2:5-34:19
+MERGED from [:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-14:19
+MERGED from [:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-14:19
+MERGED from [androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:28:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/brunomoya/.gradle/caches/transforms-3/a5233cd83b7fc5025cacdb8dbeefd5d6/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/brunomoya/.gradle/caches/transforms-3/a5233cd83b7fc5025cacdb8dbeefd5d6/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:28:18-86
+	android:name
+		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml
+manifest
+ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-58:12
+INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-58:12
+INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-58:12
+INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-58:12
+MERGED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-58:12
+MERGED from [:just_audio] /home/brunomoya/development/hackupc/seidor-hackupc/build/just_audio/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:speech_to_text] /home/brunomoya/development/hackupc/seidor-hackupc/build/speech_to_text/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:audioplayers_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/audioplayers_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:another_audio_recorder] /home/brunomoya/development/hackupc/seidor-hackupc/build/another_audio_recorder/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-16:12
+MERGED from [:path_provider_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:audio_session] /home/brunomoya/development/hackupc/seidor-hackupc/build/audio_session/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.window:window-java:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/19ff66f031cb422764b0da25d9d6bdb4/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:17:1-33:12
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/9bcf75ce2ec3070eb8c502d1cf8e9a42/transformed/jetified-exoplayer-dash-2.18.7/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/906c3dd0d95669460f7f549f996ce5d7/transformed/jetified-exoplayer-hls-2.18.7/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/fd5b2b6e373ff844ac52c1f5a8724421/transformed/jetified-exoplayer-smoothstreaming-2.18.7/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/9c1233dd14b9453f7d1754da38823114/transformed/jetified-exoplayer-core-2.18.7/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.browser:browser:1.5.0] /home/brunomoya/.gradle/caches/transforms-3/7d8771a3c3b3929c49906df700ac2b62/transformed/browser-1.5.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.1.0] /home/brunomoya/.gradle/caches/transforms-3/f08acb90420e5f313c5c702837657296/transformed/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media2:media2-session:1.2.1] /home/brunomoya/.gradle/caches/transforms-3/f73da37f16f06eb7f67d9929371069ce/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:17:1-36:12
+MERGED from [androidx.media2:media2-common:1.2.1] /home/brunomoya/.gradle/caches/transforms-3/e4f29c95d5cd63836fb5edcd4f729ba7/transformed/jetified-media2-common-1.2.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/2e2f568e346ac1b0594404c0f65ad96a/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/7ffa8d06e8a5b49556ec0d0be4900a54/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/ef9e71e89c6e7e66e50d4d00f25cb083/transformed/jetified-activity-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media:media:1.4.1] /home/brunomoya/.gradle/caches/transforms-3/b0ea6b24f1536893aeb2d23242dd921f/transformed/media-1.4.1/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.customview:customview:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/3cc0a300e8e16504f8c964b75d4a5699/transformed/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.core:core-ktx:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/027cb727e22358248a4d2902c3465b89/transformed/jetified-core-ktx-1.10.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.tracing:tracing:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/82607205b718ca85f337d9abc831d373/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-datasource:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/0434b6d0aa807e01956dd5a155073922/transformed/jetified-exoplayer-datasource-2.18.7/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/4f7f7978b779e396340fa2c904c8b284/transformed/jetified-exoplayer-extractor-2.18.7/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-decoder:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/616cb107d0e377be34ab6bc9b3ded305/transformed/jetified-exoplayer-decoder-2.18.7/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-database:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/b6bb18ab6ded5aed63fc34bc487a52b2/transformed/jetified-exoplayer-database-2.18.7/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/51bb6052da596e7a94704f1f3ca9f432/transformed/jetified-exoplayer-common-2.18.7/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /home/brunomoya/.gradle/caches/transforms-3/98d12cf67083661540ed8b18c685550e/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/0fba0f1202efb57f4db798731f75326d/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/brunomoya/.gradle/caches/transforms-3/a5233cd83b7fc5025cacdb8dbeefd5d6/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/6e71e3f5183c67b139db76d44f2671b0/transformed/jetified-savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/brunomoya/.gradle/caches/transforms-3/78f57242292929d72743f2319a29cce9/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/brunomoya/.gradle/caches/transforms-3/41d55c9465d8bf2646b5b2ad0f143b36/transformed/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/brunomoya/.gradle/caches/transforms-3/2a17abb3251629d9365dc214a005c5fe/transformed/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/brunomoya/.gradle/caches/transforms-3/cc149ec643fd78a4cbe257f85c0b7001/transformed/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/brunomoya/.gradle/caches/transforms-3/763c42b1ff6c7b83fdd4d593706ae1c8/transformed/jetified-annotation-experimental-1.3.0/AndroidManifest.xml:17:1-22:12
+INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+	package
+		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-58:12
+		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/debug/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-58:12
+		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/debug/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-58:12
+		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/debug/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:36:5-70
+	android:name
+		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:36:22-68
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:37:5-80
+	android:name
+		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:37:22-78
+uses-permission#android.permission.INTERNET
+ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:38:5-66
+MERGED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:38:5-66
+MERGED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:38:5-66
+	android:name
+		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:38:22-64
+uses-permission#android.permission.BLUETOOTH
+ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:39:5-67
+	android:name
+		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:39:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:40:5-73
+	android:name
+		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:40:22-71
+uses-permission#android.permission.BLUETOOTH_CONNECT
+ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:41:5-75
+	android:name
+		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:41:22-73
+queries
+ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:47:5-51:15
+MERGED from [androidx.media2:media2-session:1.2.1] /home/brunomoya/.gradle/caches/transforms-3/f73da37f16f06eb7f67d9929371069ce/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:24:5-34:15
+MERGED from [androidx.media2:media2-session:1.2.1] /home/brunomoya/.gradle/caches/transforms-3/f73da37f16f06eb7f67d9929371069ce/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:24:5-34:15
+MERGED from [androidx.media:media:1.4.1] /home/brunomoya/.gradle/caches/transforms-3/b0ea6b24f1536893aeb2d23242dd921f/transformed/media-1.4.1/AndroidManifest.xml:24:5-28:15
+MERGED from [androidx.media:media:1.4.1] /home/brunomoya/.gradle/caches/transforms-3/b0ea6b24f1536893aeb2d23242dd921f/transformed/media-1.4.1/AndroidManifest.xml:24:5-28:15
+intent#action:name:android.speech.RecognitionService
+ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:48:9-50:18
+action#android.speech.RecognitionService
+ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:49:13-72
+	android:name
+		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:49:21-69
+uses-sdk
+INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml
+INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml
+MERGED from [:just_audio] /home/brunomoya/development/hackupc/seidor-hackupc/build/just_audio/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:just_audio] /home/brunomoya/development/hackupc/seidor-hackupc/build/just_audio/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:speech_to_text] /home/brunomoya/development/hackupc/seidor-hackupc/build/speech_to_text/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:speech_to_text] /home/brunomoya/development/hackupc/seidor-hackupc/build/speech_to_text/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:audioplayers_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/audioplayers_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:audioplayers_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/audioplayers_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:another_audio_recorder] /home/brunomoya/development/hackupc/seidor-hackupc/build/another_audio_recorder/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:another_audio_recorder] /home/brunomoya/development/hackupc/seidor-hackupc/build/another_audio_recorder/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:path_provider_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:path_provider_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:audio_session] /home/brunomoya/development/hackupc/seidor-hackupc/build/audio_session/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:audio_session] /home/brunomoya/development/hackupc/seidor-hackupc/build/audio_session/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.window:window-java:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/19ff66f031cb422764b0da25d9d6bdb4/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.window:window-java:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/19ff66f031cb422764b0da25d9d6bdb4/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/9bcf75ce2ec3070eb8c502d1cf8e9a42/transformed/jetified-exoplayer-dash-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/9bcf75ce2ec3070eb8c502d1cf8e9a42/transformed/jetified-exoplayer-dash-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/906c3dd0d95669460f7f549f996ce5d7/transformed/jetified-exoplayer-hls-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/906c3dd0d95669460f7f549f996ce5d7/transformed/jetified-exoplayer-hls-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/fd5b2b6e373ff844ac52c1f5a8724421/transformed/jetified-exoplayer-smoothstreaming-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/fd5b2b6e373ff844ac52c1f5a8724421/transformed/jetified-exoplayer-smoothstreaming-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/9c1233dd14b9453f7d1754da38823114/transformed/jetified-exoplayer-core-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/9c1233dd14b9453f7d1754da38823114/transformed/jetified-exoplayer-core-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.browser:browser:1.5.0] /home/brunomoya/.gradle/caches/transforms-3/7d8771a3c3b3929c49906df700ac2b62/transformed/browser-1.5.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.browser:browser:1.5.0] /home/brunomoya/.gradle/caches/transforms-3/7d8771a3c3b3929c49906df700ac2b62/transformed/browser-1.5.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.1.0] /home/brunomoya/.gradle/caches/transforms-3/f08acb90420e5f313c5c702837657296/transformed/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /home/brunomoya/.gradle/caches/transforms-3/f08acb90420e5f313c5c702837657296/transformed/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media2:media2-session:1.2.1] /home/brunomoya/.gradle/caches/transforms-3/f73da37f16f06eb7f67d9929371069ce/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media2:media2-session:1.2.1] /home/brunomoya/.gradle/caches/transforms-3/f73da37f16f06eb7f67d9929371069ce/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media2:media2-common:1.2.1] /home/brunomoya/.gradle/caches/transforms-3/e4f29c95d5cd63836fb5edcd4f729ba7/transformed/jetified-media2-common-1.2.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media2:media2-common:1.2.1] /home/brunomoya/.gradle/caches/transforms-3/e4f29c95d5cd63836fb5edcd4f729ba7/transformed/jetified-media2-common-1.2.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/2e2f568e346ac1b0594404c0f65ad96a/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/2e2f568e346ac1b0594404c0f65ad96a/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/7ffa8d06e8a5b49556ec0d0be4900a54/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/7ffa8d06e8a5b49556ec0d0be4900a54/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/ef9e71e89c6e7e66e50d4d00f25cb083/transformed/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/ef9e71e89c6e7e66e50d4d00f25cb083/transformed/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.4.1] /home/brunomoya/.gradle/caches/transforms-3/b0ea6b24f1536893aeb2d23242dd921f/transformed/media-1.4.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.4.1] /home/brunomoya/.gradle/caches/transforms-3/b0ea6b24f1536893aeb2d23242dd921f/transformed/media-1.4.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/3cc0a300e8e16504f8c964b75d4a5699/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/3cc0a300e8e16504f8c964b75d4a5699/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/027cb727e22358248a4d2902c3465b89/transformed/jetified-core-ktx-1.10.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/027cb727e22358248a4d2902c3465b89/transformed/jetified-core-ktx-1.10.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.tracing:tracing:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/82607205b718ca85f337d9abc831d373/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/82607205b718ca85f337d9abc831d373/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-datasource:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/0434b6d0aa807e01956dd5a155073922/transformed/jetified-exoplayer-datasource-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-datasource:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/0434b6d0aa807e01956dd5a155073922/transformed/jetified-exoplayer-datasource-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/4f7f7978b779e396340fa2c904c8b284/transformed/jetified-exoplayer-extractor-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/4f7f7978b779e396340fa2c904c8b284/transformed/jetified-exoplayer-extractor-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-decoder:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/616cb107d0e377be34ab6bc9b3ded305/transformed/jetified-exoplayer-decoder-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-decoder:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/616cb107d0e377be34ab6bc9b3ded305/transformed/jetified-exoplayer-decoder-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-database:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/b6bb18ab6ded5aed63fc34bc487a52b2/transformed/jetified-exoplayer-database-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-database:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/b6bb18ab6ded5aed63fc34bc487a52b2/transformed/jetified-exoplayer-database-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/51bb6052da596e7a94704f1f3ca9f432/transformed/jetified-exoplayer-common-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/51bb6052da596e7a94704f1f3ca9f432/transformed/jetified-exoplayer-common-2.18.7/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /home/brunomoya/.gradle/caches/transforms-3/98d12cf67083661540ed8b18c685550e/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /home/brunomoya/.gradle/caches/transforms-3/98d12cf67083661540ed8b18c685550e/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/0fba0f1202efb57f4db798731f75326d/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/0fba0f1202efb57f4db798731f75326d/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/brunomoya/.gradle/caches/transforms-3/a5233cd83b7fc5025cacdb8dbeefd5d6/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/brunomoya/.gradle/caches/transforms-3/a5233cd83b7fc5025cacdb8dbeefd5d6/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/6e71e3f5183c67b139db76d44f2671b0/transformed/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/brunomoya/.gradle/caches/transforms-3/6e71e3f5183c67b139db76d44f2671b0/transformed/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/brunomoya/.gradle/caches/transforms-3/78f57242292929d72743f2319a29cce9/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/brunomoya/.gradle/caches/transforms-3/78f57242292929d72743f2319a29cce9/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/brunomoya/.gradle/caches/transforms-3/41d55c9465d8bf2646b5b2ad0f143b36/transformed/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/brunomoya/.gradle/caches/transforms-3/41d55c9465d8bf2646b5b2ad0f143b36/transformed/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/brunomoya/.gradle/caches/transforms-3/2a17abb3251629d9365dc214a005c5fe/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/brunomoya/.gradle/caches/transforms-3/2a17abb3251629d9365dc214a005c5fe/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/brunomoya/.gradle/caches/transforms-3/cc149ec643fd78a4cbe257f85c0b7001/transformed/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/brunomoya/.gradle/caches/transforms-3/cc149ec643fd78a4cbe257f85c0b7001/transformed/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/brunomoya/.gradle/caches/transforms-3/763c42b1ff6c7b83fdd4d593706ae1c8/transformed/jetified-annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/brunomoya/.gradle/caches/transforms-3/763c42b1ff6c7b83fdd4d593706ae1c8/transformed/jetified-annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/debug/AndroidManifest.xml
+INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/debug/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/debug/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/debug/AndroidManifest.xml
+activity#io.flutter.plugins.urllauncher.WebViewActivity
+ADDED from [:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-13:74
+	android:exported
+		ADDED from [:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-37
+	android:theme
+		ADDED from [:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-71
+	android:name
+		ADDED from [:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-74
+uses-library#androidx.window.extensions
+ADDED from [androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+uses-library#androidx.window.sidecar
+ADDED from [androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.google.android.exoplayer:exoplayer-core:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/9c1233dd14b9453f7d1754da38823114/transformed/jetified-exoplayer-core-2.18.7/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/51bb6052da596e7a94704f1f3ca9f432/transformed/jetified-exoplayer-common-2.18.7/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/51bb6052da596e7a94704f1f3ca9f432/transformed/jetified-exoplayer-common-2.18.7/AndroidManifest.xml:24:5-79
+	android:name
+		ADDED from [com.google.android.exoplayer:exoplayer-core:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/9c1233dd14b9453f7d1754da38823114/transformed/jetified-exoplayer-core-2.18.7/AndroidManifest.xml:24:22-76
+intent#action:name:android.media.browse.MediaBrowserService
+ADDED from [androidx.media2:media2-session:1.2.1] /home/brunomoya/.gradle/caches/transforms-3/f73da37f16f06eb7f67d9929371069ce/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:25:9-27:18
+action#android.media.browse.MediaBrowserService
+ADDED from [androidx.media2:media2-session:1.2.1] /home/brunomoya/.gradle/caches/transforms-3/f73da37f16f06eb7f67d9929371069ce/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:26:13-79
+	android:name
+		ADDED from [androidx.media2:media2-session:1.2.1] /home/brunomoya/.gradle/caches/transforms-3/f73da37f16f06eb7f67d9929371069ce/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:26:21-76
+intent#action:name:androidx.media2.session.MediaSessionService
+ADDED from [androidx.media2:media2-session:1.2.1] /home/brunomoya/.gradle/caches/transforms-3/f73da37f16f06eb7f67d9929371069ce/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:28:9-30:18
+action#androidx.media2.session.MediaSessionService
+ADDED from [androidx.media2:media2-session:1.2.1] /home/brunomoya/.gradle/caches/transforms-3/f73da37f16f06eb7f67d9929371069ce/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:29:13-82
+	android:name
+		ADDED from [androidx.media2:media2-session:1.2.1] /home/brunomoya/.gradle/caches/transforms-3/f73da37f16f06eb7f67d9929371069ce/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:29:21-79
+intent#action:name:androidx.media2.session.MediaLibraryService
+ADDED from [androidx.media2:media2-session:1.2.1] /home/brunomoya/.gradle/caches/transforms-3/f73da37f16f06eb7f67d9929371069ce/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:31:9-33:18
+action#androidx.media2.session.MediaLibraryService
+ADDED from [androidx.media2:media2-session:1.2.1] /home/brunomoya/.gradle/caches/transforms-3/f73da37f16f06eb7f67d9929371069ce/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:32:13-82
+	android:name
+		ADDED from [androidx.media2:media2-session:1.2.1] /home/brunomoya/.gradle/caches/transforms-3/f73da37f16f06eb7f67d9929371069ce/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:32:21-79
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:23:9-81
+permission#com.example.seidor_hackupc.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:26:22-94
+uses-permission#com.example.seidor_hackupc.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:26:22-94

@@ -1,0 +1,1 @@
+ /home/brunomoya/development/hackupc/seidor-hackupc/.dart_tool/flutter_build/bd090b02fb3aa741381838fc3d1d7910/native_assets.yaml: 
