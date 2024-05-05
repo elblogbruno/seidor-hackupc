@@ -1,0 +1,13 @@
+fastapi==0.68.1
+uvicorn==0.15.0
+sqlalchemy
+pytest
+langchain
+langchain-community
+langchain-openai
+langchain-groq
+Faker
+psycopg2
+pandas
+fuzzywuzzy
+google-api-python-client>=2.100.0
