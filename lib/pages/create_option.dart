@@ -1,17 +1,15 @@
-import 'package:flutter/material.dart';
-import 'dart:async';
-import 'dart:io' as io;
+
 import 'dart:convert';
 
-import 'package:audioplayers/audioplayers.dart';
-import 'package:file/file.dart';
+import 'package:flutter/material.dart';
 import 'package:file/local.dart';
-import 'package:another_audio_recorder/another_audio_recorder.dart';
-import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:whisper/scheme/transcribe.dart';
-import 'package:whisper/scheme/version.dart';
-import 'package:whisper/whisper_dart.dart';
+import 'package:speech_to_text/speech_to_text.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+
+import 'package:just_audio/just_audio.dart';
+import 'package:http/http.dart' as http;
+
+String EL_API_KEY = "a6a428a35925ea229488128cb89ea838";
 
 class CreateOption extends StatefulWidget {
   const CreateOption({super.key});
@@ -43,27 +41,165 @@ class RecorderExample extends StatefulWidget {
 }
 
 class RecorderExampleState extends State<RecorderExample> {
-  AnotherAudioRecorder? _recorder;
-  Recording? _current;
-  RecordingStatus _currentStatus = RecordingStatus.Unset;
+  final SpeechToText _speechToText = SpeechToText();
+  bool _speechEnabled = false;
+  String _lastWords = '';
+  String _text = '';
+
+  final player = AudioPlayer(); //audio player obj that will play audio
+  bool _isLoadingVoice = false; //for the progress indicator
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _init();
+    _initSpeech();
+
+    pokeAi("w");
   }
 
-  String _text = "";
-  void updateText(String newText) {
+  @override
+  void dispose() {
+    player.dispose();
+    super.dispose();
+  }
+
+  /// This has to happen only once per app
+  void _initSpeech() async {
+    _speechEnabled = await _speechToText.initialize(finalTimeout: Duration(seconds: 5));
+
+    var locales = await _speechToText.locales();
+    for (var locale in locales) {
+      print(locale.localeId);
+    }
+    var selectedLocale = locales.first;
+    setState(() {});
+  }
+
+  /// Each time to start a speech recognition session
+  void _startListening() async {
+    await _speechToText.listen(onResult: _onSpeechResult,
+        localeId: "en_US",
+        listenFor: Duration(seconds: 10), listenMode: ListenMode.search, onSoundLevelChange: (double level) {
+          print('Sound level $level');
+
+            if (level < 0.0)
+            {
+                print(_lastWords);
+                print("ENVIAR AQUI A API");
+            }
+        });
+
+    setState(() {});
+  }
+
+  /// Manually stop the active speech recognition session
+  /// Note that there are also timeouts that each platform enforces
+  /// and the SpeechToText plugin supports setting timeouts on the
+  /// listen method.
+  void _stopListening() async {
+    await _speechToText.stop();
+    setState(() {});
+  }
+
+  /// This is the callback that the SpeechToText plugin calls when
+  /// the platform returns recognized words.
+  void _onSpeechResult(SpeechRecognitionResult result) {
     setState(() {
-      _text = newText;
+      _lastWords = result.recognizedWords;
+      playTextToSpeech(_lastWords);
+
+      //callApi(_lastWords);
     });
+  }
+
+  Future<void> pokeAi(String clientType) async {
+    // type - warehouse (almacén) o cliente
+    //String url = "http://192.168.124.2:8000/poke?type=$clientType";
+    String url = "http://192.168.124.203:8000/poke?type=$clientType";
+
+    final response = await http.get(
+      Uri.parse(url),
+    );
+
+    print(response);
+
+    playTextToSpeech(response.body);
+  }
+
+  Future<void> query(String sentence) async {
+    String url = "http://192.168.24.2:8000/query";
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: json.encode({
+        "text": sentence,
+      }),
+    );
+  }
+
+  Future<void> queryWarehouse(String sentence) async {
+      String url = "http://192.168.24.2:8000/query_warehouse";
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json.encode({
+          "text": sentence,
+        }),
+      );
+  }
+
+
+//For the Text To Speech
+  Future<void> playTextToSpeech(String text) async {
+    //display the loading icon while we wait for request
+    setState(() {
+      _isLoadingVoice = true; //progress indicator turn on now
+    });
+
+    String voiceRachel =
+        '21m00Tcm4TlvDq8ikWAM'; //Rachel voice - change if you know another Voice ID
+
+    String url = 'https://api.elevenlabs.io/v1/text-to-speech/$voiceRachel';
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'accept': 'audio/mpeg',
+        'xi-api-key': EL_API_KEY,
+        'Content-Type': 'application/json',
+      },
+      body: json.encode({
+        "text": text,
+        "model_id": "eleven_monolingual_v1",
+        "voice_settings": {"stability": .15, "similarity_boost": .75}
+      }),
+    );
+
+    setState(() {
+      _isLoadingVoice = false; //progress indicator turn off now
+    });
+
+    if (response.statusCode == 200) {
+      final bytes = response.bodyBytes; //get the bytes ElevenLabs sent back
+      await player.setAudioSource(MyCustomSource(
+          bytes)); //send the bytes to be read from the JustAudio library
+      player.play(); //play the audio
+    } else {
+      // throw Exception('Failed to load audio');
+      return;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Scaffold(
+        appBar: AppBar(
+        title: Text('Speech Demo'),
+    ),
+    body: Center(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: <Widget>[
@@ -82,232 +218,59 @@ class RecorderExampleState extends State<RecorderExample> {
               ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    switch (_currentStatus) {
-                      case RecordingStatus.Initialized:
-                        {
-                          _start();
-                          break;
-                        }
-                      case RecordingStatus.Recording:
-                        {
-                          _pause();
-                          break;
-                        }
-                      case RecordingStatus.Paused:
-                        {
-                          _resume();
-                          break;
-                        }
-                      case RecordingStatus.Stopped:
-                        {
-                          _init();
-                          break;
-                        }
-                      default:
-                        break;
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.lightBlue,
-                  ),
-                  child: _buildText(_currentStatus),
-                ),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.all(16),
+              child: Text(
+                // If listening is active show the recognized words
+                _speechToText.isListening
+                    ? '$_lastWords'
+                // If listening isn't active but could be tell the user
+                // how to start it, otherwise indicate that speech
+                // recognition is not yet ready or not supported on
+                // the target device
+                    : _speechEnabled
+                    ? 'Tap the microphone to start listening...'
+                    : 'Speech not available',
               ),
-              ElevatedButton(
-                onPressed: _currentStatus != RecordingStatus.Unset ? _stop : null,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueAccent.withOpacity(0.5),
-                ),
-                child: const Text("Stop", style: TextStyle(color: Colors.white)),
-              ),
-              const SizedBox(width: 8),
-              ElevatedButton(
-                onPressed: onPlayAudio,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueAccent.withOpacity(0.5),
-                ),
-                child: Text("Play", style: TextStyle(color: Colors.white)),
-              ),
-            ],
+            ),
           ),
 
-          Text("Audio recording duration : ${_current?.duration.toString()}")
-        ]),
+        ])
+        ,
       ),
+
+    ),
+      floatingActionButton: FloatingActionButton(
+    onPressed:
+    // If not yet listening for speech start, otherwise stop
+    _speechToText.isNotListening ? _startListening : _stopListening,
+      tooltip: 'Listen',
+      child: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+    ),
     );
   }
 
-  _init() async {
-    try {
-      if (await AnotherAudioRecorder.hasPermissions) {
-        String customPath = '/audio_temp';
-        io.Directory appDocDirectory;
-//        io.Directory appDocDirectory = await getApplicationDocumentsDirectory();
-        if (io.Platform.isIOS) {
-          appDocDirectory = await getApplicationDocumentsDirectory();
-        } else {
-          appDocDirectory = (await getExternalStorageDirectory())!;
-        }
-
-        // can add extension like ".mp4" ".wav" ".m4a" ".aac"
-        customPath = appDocDirectory.path + customPath;
-
-        // .wav <---> AudioFormat.WAV
-        // .mp4 .m4a .aac <---> AudioFormat.AAC
-        // AudioFormat is optional, if given value, will overwrite path extension when there is conflicts.
-        io.File file = io.File("$customPath.WAV");
-        if(await file.existsSync()) {
-          //enviar al speach to text
-          Future<io.File> _getFileFromAssets(String path) async {
-            io.Directory tempDir = await getTemporaryDirectory();
-            String tempPath = tempDir.path;
-            var filePath = "$tempPath/$path";
-            var file = io.File(filePath);
-            if (file.existsSync()) {
-              return file;
-            } else {
-              final byteData = await rootBundle.load('assets/$path');
-              final buffer = byteData.buffer;
-              await file.create(recursive: true);
-              return file.writeAsBytes(buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
-            }
-          }
-
-          String pathLibrary = (await _getFileFromAssets("libwhisper_android.so")).path;
-          print(pathLibrary);
-          Whisper whisper = Whisper(whisperLib: pathLibrary);
-
-          String pathModel= (await _getFileFromAssets("for-tests-ggml-small.bin")).path;
-          print(pathModel);
-          try {
-            var res = whisper.request(
-              whisperRequest: WhisperRequest.fromWavFile(
-                audio: io.File("$customPath.WAV"),
-                model: io.File(pathModel),
-              ),
-            );
-            print(res.toString());
-
-          } catch (e) {
-            print(e);
-          }
 
 
 
+}
 
-          updateText(DateTime.timestamp().toString()*50);
-          file.deleteSync();
-        }
-        _recorder = AnotherAudioRecorder(customPath, audioFormat: AudioFormat.WAV);
+// Feed your own stream of bytes into the player
+class MyCustomSource extends StreamAudioSource {
+  final List<int> bytes;
+  MyCustomSource(this.bytes);
 
-        await _recorder?.initialized;
-
-
-        // after initialization
-        var current = await _recorder?.current(channel: 0);
-        print(current);
-        // should be "Initialized", if all working fine
-        setState(() {
-          _current = current;
-          _currentStatus = current!.status!;
-          print(_currentStatus);
-        });
-      } else {
-        return const SnackBar(content: Text("You must accept permissions"));
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  _start() async {
-    try {
-      await _recorder?.start();
-      var recording = await _recorder?.current(channel: 0);
-      setState(() {
-        _current = recording;
-      });
-
-      const tick = Duration(milliseconds: 50);
-      Timer.periodic(tick, (Timer t) async {
-        if (_currentStatus == RecordingStatus.Stopped) {
-          t.cancel();
-        }
-
-        var current = await _recorder?.current(channel: 0);
-        // print(current.status);
-        setState(() {
-          _current = current;
-          _currentStatus = _current!.status!;
-        });
-      });
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  _resume() async {
-    await _recorder?.resume();
-    setState(() {});
-  }
-
-  _pause() async {
-    await _recorder?.pause();
-    setState(() {});
-  }
-
-  _stop() async {
-    var result = await _recorder?.stop();
-    print("Stop recording: ${result?.path}");
-    print("Stop recording: ${result?.duration}");
-    File file = widget.localFileSystem.file(result?.path);
-    print("File length: ${await file.length()}");
-    setState(() {
-      _current = result;
-      _currentStatus = _current!.status!;
-    });
-  }
-
-  Widget _buildText(RecordingStatus status) {
-    var text = "";
-    switch (_currentStatus) {
-      case RecordingStatus.Initialized:
-        {
-          text = 'Start';
-          break;
-        }
-      case RecordingStatus.Recording:
-        {
-          text = 'Pause';
-          break;
-        }
-      case RecordingStatus.Paused:
-        {
-          text = 'Resume';
-          break;
-        }
-      case RecordingStatus.Stopped:
-        {
-          text = 'Init';
-          break;
-        }
-      default:
-        break;
-    }
-    return Text(text, style: const TextStyle(color: Colors.white));
-  }
-
-  //sustituir por llamar a whisper
-  void onPlayAudio() async {
-    AudioPlayer audioPlayer = AudioPlayer();
-    Source source = DeviceFileSource(_current!.path!);
-    await audioPlayer.play(source);
+  @override
+  Future<StreamAudioResponse> request([int? start, int? end]) async {
+    start ??= 0;
+    end ??= bytes.length;
+    return StreamAudioResponse(
+      sourceLength: bytes.length,
+      contentLength: end - start,
+      offset: start,
+      stream: Stream.value(bytes.sublist(start, end)),
+      contentType: 'audio/mpeg',
+    );
   }
 }
