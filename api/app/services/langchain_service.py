@@ -365,7 +365,7 @@ class LangChainService:
         final_answer = self.table_chain.invoke({ 
                 "input": text, "order_list": order_list, "chat_history": self.sql_chat_history.messages}, config=self.config)
         
-        print(final_answer['output'])
+        print("OUTPUT: " + str(final_answer['output']))
 
         self.memory.save_context(inputs={"input": text}, outputs={"output": final_answer['output'], "order_list": order_list})
 

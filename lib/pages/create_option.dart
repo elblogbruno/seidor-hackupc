@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:file/local.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 
@@ -12,35 +13,16 @@ import 'package:http/http.dart' as http;
 String EL_API_KEY = "a6a428a35925ea229488128cb89ea838";
 
 class CreateOption extends StatefulWidget {
-  const CreateOption({super.key});
+  final String title;
+  final bool isCreatingOrder;
+  const CreateOption({super.key,  required this.title, required this.isCreatingOrder});
 
   @override
   State<CreateOption> createState() => _CreateOptionState();
 }
 
+
 class _CreateOptionState extends State<CreateOption> {
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: SafeArea(
-          child: RecorderExample(),
-        ),
-      ),
-    );
-  }
-}
-
-class RecorderExample extends StatefulWidget {
-  final LocalFileSystem localFileSystem;
-
-  const RecorderExample({super.key, localFileSystem}) : localFileSystem = localFileSystem ?? const LocalFileSystem();
-
-  @override
-  State<StatefulWidget> createState() => RecorderExampleState();
-}
-
-class RecorderExampleState extends State<RecorderExample> {
   final SpeechToText _speechToText = SpeechToText();
   bool _speechEnabled = false;
   String _lastWords = '';
@@ -54,7 +36,11 @@ class RecorderExampleState extends State<RecorderExample> {
     super.initState();
     _initSpeech();
 
-    pokeAi("w");
+    if (widget.isCreatingOrder) {
+      pokeAi("c");
+    } else {
+      pokeAi("warehouse");
+    }
   }
 
   @override
@@ -77,6 +63,15 @@ class RecorderExampleState extends State<RecorderExample> {
 
   /// Each time to start a speech recognition session
   void _startListening() async {
+    if (!_speechEnabled) {
+      print('Speech recognition not available');
+      return;
+    }
+
+    if (_isLoadingVoice) {
+      return;
+    }
+
     await _speechToText.listen(onResult: _onSpeechResult,
         localeId: "en_US",
         listenFor: Duration(seconds: 10), listenMode: ListenMode.search, onSoundLevelChange: (double level) {
@@ -106,50 +101,56 @@ class RecorderExampleState extends State<RecorderExample> {
   void _onSpeechResult(SpeechRecognitionResult result) {
     setState(() {
       _lastWords = result.recognizedWords;
-      playTextToSpeech(_lastWords);
-
-      //callApi(_lastWords);
+      _text =  _lastWords;
     });
+
+    if (_speechToText.isListening == false) {
+      print("ENVIANDO A API");
+      query(_text);
+    }
   }
 
   Future<void> pokeAi(String clientType) async {
     // type - warehouse (almacén) o cliente
     //String url = "http://192.168.124.2:8000/poke?type=$clientType";
+    _speechToText.stop();
     String url = "http://192.168.124.203:8000/poke?type=$clientType";
 
     final response = await http.get(
       Uri.parse(url),
     );
 
-    print(response);
+    print(response.body);
 
     playTextToSpeech(response.body);
   }
 
   Future<void> query(String sentence) async {
-    String url = "http://192.168.24.2:8000/query";
-    final response = await http.post(
-      Uri.parse(url),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: json.encode({
-        "text": sentence,
-      }),
-    );
-  }
+    String url = "http://192.168.124.203:8000/query_warehouse?sentence=$sentence";
 
-  Future<void> queryWarehouse(String sentence) async {
-      String url = "http://192.168.24.2:8000/query_warehouse";
+    if (widget.isCreatingOrder) {
+      url = "http://192.168.124.203:8000/query?sentence=$sentence";
+    }
+
+    try {
       final response = await http.post(
         Uri.parse(url),
         headers: {
           'Content-Type': 'application/json',
         },
-        body: json.encode({
-          "text": sentence,
-        }),
       );
+
+      print("RESPONSE: " + response.body);
+
+      playTextToSpeech(response.body);
+
+      setState(() {
+        _text = response.body.replaceAll('\\n', '\n');
+      });
+
+    } catch (e) {
+      print(e);
+    }
   }
 
 
@@ -158,10 +159,10 @@ class RecorderExampleState extends State<RecorderExample> {
     //display the loading icon while we wait for request
     setState(() {
       _isLoadingVoice = true; //progress indicator turn on now
+      _speechToText.stop();
     });
 
-    String voiceRachel =
-        '21m00Tcm4TlvDq8ikWAM'; //Rachel voice - change if you know another Voice ID
+    String voiceRachel = '21m00Tcm4TlvDq8ikWAM'; //Rachel voice - change if you know another Voice ID
 
     String url = 'https://api.elevenlabs.io/v1/text-to-speech/$voiceRachel';
     final response = await http.post(
@@ -181,14 +182,32 @@ class RecorderExampleState extends State<RecorderExample> {
     setState(() {
       _isLoadingVoice = false; //progress indicator turn off now
     });
+    print("AUDIO RESPONSE: " + response.body.toString());
+
+    //_text = response.body.toString();
 
     if (response.statusCode == 200) {
       final bytes = response.bodyBytes; //get the bytes ElevenLabs sent back
       await player.setAudioSource(MyCustomSource(
           bytes)); //send the bytes to be read from the JustAudio library
       player.play(); //play the audio
+
+
+      _startListening();
+
     } else {
       // throw Exception('Failed to load audio');
+      print("Failed to load audio from ElevenLabs");
+
+      FlutterTts flutterTts = FlutterTts();
+
+      flutterTts.setLanguage("en-US");
+
+      await flutterTts.speak(text);
+      await flutterTts.awaitSpeakCompletion(true);
+
+      _startListening();
+
       return;
     }
   }
@@ -196,8 +215,9 @@ class RecorderExampleState extends State<RecorderExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: _speechToText.isListening ? Colors.blue[100] : Colors.red[100],
         appBar: AppBar(
-        title: Text('Speech Demo'),
+        title: Text(widget.title),
     ),
     body: Center(
       child: Padding(
@@ -205,8 +225,10 @@ class RecorderExampleState extends State<RecorderExample> {
         child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: <Widget>[
           Container(
             height: 450, // Altura fija del contenedor
-            width: 260,
+            width: 300,
             decoration: BoxDecoration(
+              color: Colors.white, // Color de fondo del contenedor
+
               border: Border.all(color: Colors.blue, width: 2), // Borde del contenedor
               borderRadius: BorderRadius.circular(8), // Bordes redondeados
             ),
@@ -218,6 +240,8 @@ class RecorderExampleState extends State<RecorderExample> {
               ),
             ),
           ),
+          // if is loading voice, show the progress indicator
+          if (_isLoadingVoice) CircularProgressIndicator(),
           Expanded(
             child: Container(
               padding: EdgeInsets.all(16),

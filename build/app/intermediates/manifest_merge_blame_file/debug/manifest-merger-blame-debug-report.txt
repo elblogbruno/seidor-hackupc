@@ -72,84 +72,90 @@
 46            <data android:mimeType="text/plain" />
 47        </intent>
 48    </queries>
-49
-50    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-50-->[com.google.android.exoplayer:exoplayer-core:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/9c1233dd14b9453f7d1754da38823114/transformed/jetified-exoplayer-core-2.18.7/AndroidManifest.xml:24:5-79
-50-->[com.google.android.exoplayer:exoplayer-core:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/9c1233dd14b9453f7d1754da38823114/transformed/jetified-exoplayer-core-2.18.7/AndroidManifest.xml:24:22-76
-51
-52    <permission
-52-->[androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:22:5-24:47
-53        android:name="com.example.seidor_hackupc.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-53-->[androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:23:9-81
-54        android:protectionLevel="signature" />
-54-->[androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:24:9-44
-55
-56    <uses-permission android:name="com.example.seidor_hackupc.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-56-->[androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:26:5-97
-56-->[androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:26:22-94
-57
-58    <application
-59        android:name="android.app.Application"
-60        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-60-->[androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:28:18-86
-61        android:debuggable="true"
-62        android:icon="@mipmap/ic_launcher"
-63        android:label="seidor_hackupc"
-64        android:usesCleartextTraffic="true" >
-65        <activity
-66            android:name="com.example.seidor_hackupc.MainActivity"
-67            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-68            android:exported="true"
-69            android:hardwareAccelerated="true"
-70            android:launchMode="singleTop"
-71            android:theme="@style/LaunchTheme"
-72            android:windowSoftInputMode="adjustResize" >
-73
-74            <!--
-75                 Specifies an Android theme to apply to this Activity as soon as
-76                 the Android process has started. This theme is visible to the user
-77                 while the Flutter UI initializes. After that, this theme continues
-78                 to determine the Window background behind the Flutter UI.
-79            -->
-80            <meta-data
-81                android:name="io.flutter.embedding.android.NormalTheme"
-82                android:resource="@style/NormalTheme" />
-83
-84            <intent-filter>
-85                <action android:name="android.intent.action.MAIN" />
-86
-87                <category android:name="android.intent.category.LAUNCHER" />
-88            </intent-filter>
-89        </activity>
-90        <!--
-91             Don't delete the meta-data below.
-92             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-93        -->
-94        <meta-data
-95            android:name="flutterEmbedding"
-96            android:value="2" />
-97
-98        <activity
-98-->[:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-13:74
-99            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
-99-->[:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-74
-100            android:exported="false"
-100-->[:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-37
-101            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-101-->[:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-71
+49    <queries>
+49-->/home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:47:5-51:15
+50        <intent>
+51            <action android:name="android.intent.action.TTS_SERVICE" />
+52        </intent>
+53    </queries>
+54
+55    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+55-->[com.google.android.exoplayer:exoplayer-core:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/9c1233dd14b9453f7d1754da38823114/transformed/jetified-exoplayer-core-2.18.7/AndroidManifest.xml:24:5-79
+55-->[com.google.android.exoplayer:exoplayer-core:2.18.7] /home/brunomoya/.gradle/caches/transforms-3/9c1233dd14b9453f7d1754da38823114/transformed/jetified-exoplayer-core-2.18.7/AndroidManifest.xml:24:22-76
+56
+57    <permission
+57-->[androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:22:5-24:47
+58        android:name="com.example.seidor_hackupc.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+58-->[androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:23:9-81
+59        android:protectionLevel="signature" />
+59-->[androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:24:9-44
+60
+61    <uses-permission android:name="com.example.seidor_hackupc.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+61-->[androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:26:5-97
+61-->[androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:26:22-94
+62
+63    <application
+64        android:name="android.app.Application"
+65        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+65-->[androidx.core:core:1.10.1] /home/brunomoya/.gradle/caches/transforms-3/b6067ea04b980d60b46d271eb9438da2/transformed/core-1.10.1/AndroidManifest.xml:28:18-86
+66        android:debuggable="true"
+67        android:icon="@mipmap/ic_launcher"
+68        android:label="seidor_hackupc"
+69        android:usesCleartextTraffic="true" >
+70        <activity
+71            android:name="com.example.seidor_hackupc.MainActivity"
+72            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+73            android:exported="true"
+74            android:hardwareAccelerated="true"
+75            android:launchMode="singleTop"
+76            android:theme="@style/LaunchTheme"
+77            android:windowSoftInputMode="adjustResize" >
+78
+79            <!--
+80                 Specifies an Android theme to apply to this Activity as soon as
+81                 the Android process has started. This theme is visible to the user
+82                 while the Flutter UI initializes. After that, this theme continues
+83                 to determine the Window background behind the Flutter UI.
+84            -->
+85            <meta-data
+86                android:name="io.flutter.embedding.android.NormalTheme"
+87                android:resource="@style/NormalTheme" />
+88
+89            <intent-filter>
+90                <action android:name="android.intent.action.MAIN" />
+91
+92                <category android:name="android.intent.category.LAUNCHER" />
+93            </intent-filter>
+94        </activity>
+95        <!--
+96             Don't delete the meta-data below.
+97             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+98        -->
+99        <meta-data
+100            android:name="flutterEmbedding"
+101            android:value="2" />
 102
-103        <uses-library
-103-->[androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
-104            android:name="androidx.window.extensions"
-104-->[androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
-105            android:required="false" />
-105-->[androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
-106        <uses-library
-106-->[androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
-107            android:name="androidx.window.sidecar"
-107-->[androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
-108            android:required="false" />
-108-->[androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
-109    </application>
-110
-111</manifest>
+103        <activity
+103-->[:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-13:74
+104            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+104-->[:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-74
+105            android:exported="false"
+105-->[:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-37
+106            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+106-->[:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-71
+107
+108        <uses-library
+108-->[androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+109            android:name="androidx.window.extensions"
+109-->[androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+110            android:required="false" />
+110-->[androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+111        <uses-library
+111-->[androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+112            android:name="androidx.window.sidecar"
+112-->[androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+113            android:required="false" />
+113-->[androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+114    </application>
+115
+116</manifest>

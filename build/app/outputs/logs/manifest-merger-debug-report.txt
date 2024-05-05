@@ -14,17 +14,18 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/bruno
 	android:name
 		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml
 manifest
-ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-58:12
-INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-58:12
-INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-58:12
-INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-58:12
-MERGED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-58:12
+ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-64:12
+INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-64:12
+INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-64:12
+INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-64:12
+MERGED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-64:12
 MERGED from [:just_audio] /home/brunomoya/development/hackupc/seidor-hackupc/build/just_audio/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:speech_to_text] /home/brunomoya/development/hackupc/seidor-hackupc/build/speech_to_text/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:audioplayers_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/audioplayers_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:another_audio_recorder] /home/brunomoya/development/hackupc/seidor-hackupc/build/another_audio_recorder/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-16:12
 MERGED from [:path_provider_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:flutter_tts] /home/brunomoya/development/hackupc/seidor-hackupc/build/flutter_tts/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:audio_session] /home/brunomoya/development/hackupc/seidor-hackupc/build/audio_session/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/19ff66f031cb422764b0da25d9d6bdb4/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:17:1-23:12
 MERGED from [androidx.window:window:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/d97cf3ffa6f05f8e8de8b41da1cca67f/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:17:1-33:12
@@ -63,15 +64,15 @@ INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src
 INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/debug/AndroidManifest.xml:1:1-7:12
 	package
 		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-58:12
+		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-64:12
 		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/debug/AndroidManifest.xml
 	android:versionName
 		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-58:12
+		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-64:12
 		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/debug/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-58:12
+		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:1-64:12
 		INJECTED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/debug/AndroidManifest.xml
 	xmlns:android
 		ADDED from /home/brunomoya/development/hackupc/seidor-hackupc/android/app/src/main/AndroidManifest.xml:1:11-69
@@ -129,6 +130,8 @@ MERGED from [:url_launcher_android] /home/brunomoya/development/hackupc/seidor-h
 MERGED from [:url_launcher_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] /home/brunomoya/development/hackupc/seidor-hackupc/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_tts] /home/brunomoya/development/hackupc/seidor-hackupc/build/flutter_tts/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_tts] /home/brunomoya/development/hackupc/seidor-hackupc/build/flutter_tts/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:audio_session] /home/brunomoya/development/hackupc/seidor-hackupc/build/audio_session/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:audio_session] /home/brunomoya/development/hackupc/seidor-hackupc/build/audio_session/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.window:window-java:1.0.0-beta04] /home/brunomoya/.gradle/caches/transforms-3/19ff66f031cb422764b0da25d9d6bdb4/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41

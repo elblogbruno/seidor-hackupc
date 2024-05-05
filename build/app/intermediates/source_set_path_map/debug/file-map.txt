@@ -20,7 +20,8 @@ com.example.seidor_hackupc.app-mergeDebugResources-18 /home/brunomoya/developmen
 com.example.seidor_hackupc.app-merged_res-19 /home/brunomoya/development/hackupc/seidor-hackupc/build/app/intermediates/merged_res/debug
 com.example.seidor_hackupc.app-packaged_res-20 /home/brunomoya/development/hackupc/seidor-hackupc/build/audio_session/intermediates/packaged_res/debug
 com.example.seidor_hackupc.app-packaged_res-21 /home/brunomoya/development/hackupc/seidor-hackupc/build/audioplayers_android/intermediates/packaged_res/debug
-com.example.seidor_hackupc.app-packaged_res-22 /home/brunomoya/development/hackupc/seidor-hackupc/build/just_audio/intermediates/packaged_res/debug
-com.example.seidor_hackupc.app-packaged_res-23 /home/brunomoya/development/hackupc/seidor-hackupc/build/path_provider_android/intermediates/packaged_res/debug
-com.example.seidor_hackupc.app-packaged_res-24 /home/brunomoya/development/hackupc/seidor-hackupc/build/speech_to_text/intermediates/packaged_res/debug
-com.example.seidor_hackupc.app-packaged_res-25 /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/packaged_res/debug
+com.example.seidor_hackupc.app-packaged_res-22 /home/brunomoya/development/hackupc/seidor-hackupc/build/flutter_tts/intermediates/packaged_res/debug
+com.example.seidor_hackupc.app-packaged_res-23 /home/brunomoya/development/hackupc/seidor-hackupc/build/just_audio/intermediates/packaged_res/debug
+com.example.seidor_hackupc.app-packaged_res-24 /home/brunomoya/development/hackupc/seidor-hackupc/build/path_provider_android/intermediates/packaged_res/debug
+com.example.seidor_hackupc.app-packaged_res-25 /home/brunomoya/development/hackupc/seidor-hackupc/build/speech_to_text/intermediates/packaged_res/debug
+com.example.seidor_hackupc.app-packaged_res-26 /home/brunomoya/development/hackupc/seidor-hackupc/build/url_launcher_android/intermediates/packaged_res/debug

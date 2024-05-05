@@ -276,7 +276,7 @@ def get_input() -> str:
 class LangChainServiceWarehouse:
     def __init__(self, on_human_input=None, cli_mode=False):
 
-        llm = ChatOpenAI(temperature=0)
+        llm = ChatOpenAI(temperature=0, streaming=False)
         # llm = Ollama(model="mistral")
         # llm = ChatGroq(temperature=0, groq_api_key="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", model_name="mixtral-8x7b-32768") #"llama3-8b-8192") #  "mixtral-8x7b-32768")
         

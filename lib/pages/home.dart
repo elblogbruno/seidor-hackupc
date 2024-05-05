@@ -12,6 +12,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Image.network('https://yt3.googleusercontent.com/DYLEnXuuXhxcX1F9woO8r-4C3IuiNM_Lb4PGxBiTEeLgG0XxY773Irm629Kz_klYMkiixXX2I88=s900-c-k-c0x00ffffff-no-rj'),
             const Text(
               'Welcome to SeiVoice!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -24,7 +25,7 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const OrderOptions()),
                 );
               },
-              child: const Text("let's go!"),
+              child: const Text("Start!"),
             ),
           ],
         ),

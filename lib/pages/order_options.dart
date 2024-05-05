@@ -25,21 +25,23 @@ class OrderOptions extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Image.network('https://icons.veryicon.com/png/o/business/operation-and-maintenance-platform/create-order.png', width: 100, height: 100),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const CreateOption()),
+                  MaterialPageRoute(builder: (context) => const CreateOption(title: 'Create an order', isCreatingOrder: true,)),
                 );
               },
               child: const Text('Create an order'),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 100),
+            Image.network('https://cdn2.iconfinder.com/data/icons/shopping-e-commerce-3-1/32/Preparing-Order-Ship-preparing-To-512.png', width: 100, height: 100),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const PrepareOption()),
+                  MaterialPageRoute(builder: (context) => const CreateOption(title: 'Prepare the order', isCreatingOrder: false,)),
                 );
               },
               child: const Text('Prepare the order'),

@@ -176,6 +176,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "flutter_tts",
+      "rootUri": "file:///home/brunomoya/.pub-cache/hosted/pub.dev/flutter_tts-3.8.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_web_plugins",
       "rootUri": "file:///home/brunomoya/development/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
@@ -524,7 +530,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-05-04T23:52:03.254405Z",
+  "generated": "2024-05-05T02:04:38.913764Z",
   "generator": "pub",
   "generatorVersion": "3.3.4"
 }

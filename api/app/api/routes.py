@@ -19,21 +19,22 @@ langchain_service_warehouse = LangChainServiceWarehouse(on_human_input=on_human_
 
 
 @router.post("/query")
-async def query(text: str):
+async def query(sentence: str):
+    print("sentence: ", sentence)
     try:
         # global human_input
         # if human_input: # if human input is not empty, it means our query is a follow-up query to the human input request
         #     human_input = False
         #     return langchain_service.text_to_sql(human_input) 
 
-        sql_query = langchain_service.text_to_sql(text)
+        sql_query = langchain_service.text_to_sql(sentence)
         
         # result = database_service.execute_sql(sql_query)
         
-        if human_input != "":
-            return {"ai_query": human_input}
+        if human_input:
+            return human_input
         else:
-            return {"ai_query": sql_query}
+            return sql_query
         
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -53,7 +54,7 @@ async def poke_llm(type: str):
         raise HTTPException(status_code=400, detail=str(e)) 
 
 @router.post("/query_warehouse")
-async def query_warehouse(text: str):
+async def query_warehouse(sentence: str):
     try:
         # global human_input
         # if human_input != "": # if human input is not empty, it means our query is a follow-up query to the human input request
@@ -61,13 +62,13 @@ async def query_warehouse(text: str):
         #     human_input = ""
         #     return langchain_service_warehouse.text_to_sql(temp_input)
         
-        sql_query = langchain_service_warehouse.text_to_sql(text)
+        sql_query = langchain_service_warehouse.text_to_sql(sentence)
         # result = database_service.execute_sql(sql_query)
         
-        if  human_input != "":
-            return {"ai_query": human_input}
+        if  human_input:
+            return human_input
         else:
-            return {"ai_query": sql_query}
+            return  sql_query
         
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
